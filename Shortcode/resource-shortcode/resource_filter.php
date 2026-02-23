@@ -308,7 +308,7 @@ function get_filtered_portfolios($filters = [], $page = 1, $posts_per_page = 15)
         // Remove 'post__in' to avoid conflict with tax_query
 
         unset($args['post__in']);
-
+        unset($args['order']);
         unset($args['orderby']);
 
     }
@@ -345,7 +345,8 @@ function get_filtered_portfolios($filters = [], $page = 1, $posts_per_page = 15)
 
         if (!isset($args['post__in'])) {
 
-            $args['orderby'] = ['date' => 'DESC'];
+            $args['orderby'] = 'date';
+            $args['order']   = 'DESC';
 
         }
 
@@ -513,7 +514,15 @@ function portfolio_filter_shortcode($atts) {
     </div>
 
     <div class="resource-grid">
-        <?php echo get_filtered_portfolios([], 1); ?>
+        <?php
+        $initial_filters = [
+            'type'   => isset($_GET['type'])   ? sanitize_text_field($_GET['type'])   : '',
+            'topic'  => isset($_GET['topic'])  ? sanitize_text_field($_GET['topic'])  : '',
+            'search' => isset($_GET['search']) ? sanitize_text_field($_GET['search']) : '',
+            'sort'   => isset($_GET['sort'])   ? sanitize_text_field($_GET['sort'])   : '',
+        ];
+        echo get_filtered_portfolios($initial_filters, 1);
+        ?>
     </div>
 
     <div class="load-more-btn-wrapper resource-btn-wrapper">
