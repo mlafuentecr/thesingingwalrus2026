@@ -151,7 +151,7 @@ function get_filtered_portfolios($filters = [], $page = 1, $posts_per_page = 15)
 
     $type = !empty($filters['type']) && in_array($filters['type'], ['post', 'songs']) ? sanitize_text_field($filters['type']) : '';
 
-    $sort = !empty($filters['sort']) ? sanitize_text_field($filters['sort']) : 'recent';
+    $sort = !empty($filters['sort']) ? sanitize_text_field($filters['sort']) : 'alphabetical';
 
     
 

@@ -38,7 +38,7 @@ jQuery(document).ready(function ($) {
             type: params.get("type") || '',
             topic: params.get("topic") || '',
             search: params.get("search") || '',
-            sort: params.get("sort") || '',
+            sort: params.get("sort") || 'alphabetical',
         };
     }
 
